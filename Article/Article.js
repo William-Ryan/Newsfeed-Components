@@ -85,6 +85,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Rock and Roll',
+    date: 'Now and Now',
+    firstParagraph: `Kick it hard!`,
+
+    secondParagraph: `Make sure it feels right!`,
+
+    thirdParagraph: `Wicked solos required!`
   }
 ];
 
@@ -102,7 +111,7 @@ const data = [
   Hint: You will need to use createElement more than once here!
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
-
+  
   Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
 
   Step 3: return the entire component.
@@ -112,3 +121,42 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph){
+
+  const article = document.createElement("div");
+  const artTitle = document.createElement("h2");
+  const artDate = document.createElement("p");
+  const firstP = document.createElement("p");
+  const secondP = document.createElement("p");
+  const thirdP = document.createElement("p");
+  const expand = document.createElement("span");
+
+  article.append(artTitle);
+  article.append(artDate);
+  article.append(firstP);
+  article.append(secondP);
+  article.append(thirdP);
+  article.append(expand);
+
+  article.classList.add("article", "article-open");
+  artDate.classList.add("date");
+  expand.classList.add("expandButton");
+
+  artTitle.textContent = title;
+  artDate.textContent = date;
+  firstP.textContent = firstParagraph;
+  secondP.textContent = secondParagraph;
+  thirdP.textContent = thirdParagraph;
+
+  expand.addEventListener("mouseenter", event => {
+    article.classList.toggle("article-open");
+  })
+
+  return article;
+}
+
+const body = document.querySelector("body");
+
+data.map(e => {
+  body.append(createArticle(e.title, e.date, e.firstParagraph, e.secondParagraph, e.thirdParagraph))
+})
