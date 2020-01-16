@@ -147,8 +147,9 @@ function createArticle(title, date, firstParagraph, secondParagraph, thirdParagr
   firstP.textContent = firstParagraph;
   secondP.textContent = secondParagraph;
   thirdP.textContent = thirdParagraph;
+  expand.textContent = "Right Here!";
 
-  expand.addEventListener("mouseenter", event => {
+  expand.addEventListener("click", event => {
     article.classList.toggle("article-open");
   })
 
